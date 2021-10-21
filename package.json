@@ -1,7 +1,7 @@
 {
-  "name": "tui-jsdoc-template",
+  "name": "@yo35/tui-jsdoc-template",
   "version": "1.2.2",
-  "description": "Toast UI JSDoc Template",
+  "description": "Toast UI JSDoc Template - Forked version",
   "main": "publish.js",
   "scripts": {
     "serve": "gulp serve"
@@ -9,11 +9,11 @@
   "authors": [
     "NHNEnt FE Development Lab <dl_javascript@nhnent.com>"
   ],
+  "contributors": [
+    "Yoann Le Montagner <yo35@melix.net>"
+  ],
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/nhnent/tui.jsdoc-template"
-  },
+  "repository": "github:yo35/tui.jsdoc-template",
   "keywords": [
     "jsdoc",
     "jsdoc3",
