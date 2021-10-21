@@ -10,13 +10,11 @@ var taffy = require('taffydb').taffy;
 var template = require('jsdoc/template');
 var tutorial = require('jsdoc/tutorial');
 var util = require('util');
-var cheerio = require('cheerio'); // for parse html to dom
 var _ = require('underscore');
 
 var htmlsafe = helper.htmlsafe;
 var linkto = helper.linkto;
 var resolveAuthorLinks = helper.resolveAuthorLinks;
-var scopeToPunc = helper.scopeToPunc;
 var hasOwnProp = Object.prototype.hasOwnProperty;
 
 var data;
@@ -785,7 +783,7 @@ exports.publish = function(taffyData, opts, tutorials) {
         };
 
         if (isHtmlTutorial) {
-            _.extend(tutorialData, generateHtmlTutorialData(tutorial, fileName, originalFileName));
+            throw 'HTML tutorial not supported anymore.';
         } else {
             tutorialData.content = tutorial.parse();
         }
@@ -797,19 +795,6 @@ exports.publish = function(taffyData, opts, tutorials) {
         html = helper.resolveLinks(html); // turn {@link foo} into <a href="foodoc.html">foo</a>
 
         fs.writeFileSync(tutorialPath, html, 'utf8');
-    }
-
-    function generateHtmlTutorialData(tutorial, filename, originalFileName) {
-        var $ = cheerio.load(tutorial.parse(), {
-            decodeEntities: false,
-            normalizeWhitespace: false
-        });
-
-        return {
-            codeHtml: htmlsafe($('div.code-html').html() || ''),
-            codeJs: htmlsafe($('script.code-js').html() || ''),
-            originalFileName: originalFileName
-        };
     }
 
     // tutorials can have only one parent so there is no risk for loops
